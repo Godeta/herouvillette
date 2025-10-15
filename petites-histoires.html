@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petites Histoires - Hérouvillette</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Logo Hérouvillette">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="petites-histoires.html">Petites Histoires</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="introduction-petites-histoires">
+            <h1>Petites histoires dans la grande</h1>
+            <p>Des récits personnels, des anecdotes et des souvenirs qui tissent l’histoire de notre commune. Chaque histoire est une pièce du puzzle de notre mémoire collective.</p>
+            <div class="audio-intro">
+                <audio controls>
+                    <source src="assets/audio/introduction.mp3" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+                <p>(Durée : 1:30)</p>
+            </div>
+        </section>
+
+        <section class="galerie-cartes">
+            <div class="carte" onclick="ouvrirModal('modal-1')">
+                <img src="assets/images/anecdote-1.jpg" alt="Le clocher en 1987">
+                <h3>Le jour où le clocher a failli s’écrouler</h3>
+                <p>En 1987, une tempête a menacé le clocher de l’église...</p>
+                <div class="audio-duree">
+                    <span>Écouter (3:15)</span>
+                </div>
+                <div class="fleche">→</div>
+            </div>
+            <!-- Ajoutez d'autres cartes ici -->
+        </section>
+    </main>
+
+    <!-- Exemple de modal -->
+    <div id="modal-1" class="modal">
+        <div class="modal-contenu">
+            <span class="fermer" onclick="fermerModal('modal-1')">&times;</span>
+            <h2>Le jour où le clocher a failli s’écrouler</h2>
+            <img src="assets/images/anecdote-1.jpg" alt="Le clocher en 1987">
+            <p>En 1987, une tempête d’une violence inouïe s’est abattue sur Hérouvillette. Les vents ont soufflé à plus de 150 km/h, arrachant des arbres et endommageant de nombreux bâtiments. Le clocher de l’église, symbole de la commune, a vacillé sous la force des éléments. Grâce à l’intervention rapide des pompiers et des habitants, la structure a pu être sécurisée et restaurée par la suite.</p>
+            <audio controls>
+                <source src="assets/audio/anecdote-1.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 - Arnaud GODET</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
