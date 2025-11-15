@@ -4,68 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petites Histoires - Hérouvillette</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="Logo Hérouvillette">
+<body class="bg-orange-50">
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container-custom">
+            <div class="flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center space-x-4">
+                    <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="h-10 w-auto">
+                    <h1 class="text-xl sm:text-2xl font-bold text-red-600">Hérouvillette</h1>
+                </div>
+                <nav class="desktop-menu">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Accueil</a></li>
+                        <li><a href="petites-histoires.html" class="text-red-600 font-semibold border-b-2 border-amber-400">Petites Histoires</a></li>
+                        <li><a href="evolution.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Évolution</a></li>
+                        <li><a href="contact.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu p-2 text-gray-700" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-nav" class="mobile-menu hidden border-t border-gray-200 py-4">
+                <ul class="space-y-2 px-4">
+                    <li><a href="index.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Accueil</a></li>
+                    <li><a href="petites-histoires.html" class="block py-2 text-red-600 font-semibold">Petites Histoires</a></li>
+                    <li><a href="evolution.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Évolution</a></li>
+                    <li><a href="contact.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="petites-histoires.html">Petites Histoires</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <section class="introduction-petites-histoires">
-            <h1>Petites histoires dans la grande</h1>
-            <p>Des récits personnels, des anecdotes et des souvenirs qui tissent l’histoire de notre commune. Chaque histoire est une pièce du puzzle de notre mémoire collective.</p>
-            <div class="audio-intro">
-                <audio controls>
-                    <source src="assets/audio/introduction.mp3" type="audio/mpeg">
-                    Votre navigateur ne supporte pas l'élément audio.
-                </audio>
-                <p>(Durée : 1:30)</p>
+        <!-- Hero Section -->
+        <section class="relative h-[60vh] min-h-[400px] overflow-hidden">
+            <img src="assets/images/paysages.jpg" alt="Paysage Normand" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="relative container-custom h-full flex items-center justify-center text-center text-white">
+                <div class="max-w-4xl animate-fade-in-up">
+                    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 text-amber-100">Petites Histoires</h1>
+                    <p class="text-2xl text-orange-100 max-w-3xl mx-auto mb-8 font-medium">Des récits personnels qui tissent l'histoire de notre commune</p>
+                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6 max-w-md mx-auto">
+                        <audio controls class="w-full mb-2">
+                            <source src="assets/audios/projet_histoire.m4a" type="audio/mpeg">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
+                        <p class="text-sm text-orange-100">(Durée : 46s)</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="galerie-cartes">
-            <div class="carte" onclick="ouvrirModal('modal-1')">
-                <img src="assets/images/anecdote-1.jpg" alt="Le clocher en 1987">
-                <h3>Le jour où le clocher a failli s’écrouler</h3>
-                <p>En 1987, une tempête a menacé le clocher de l’église...</p>
-                <div class="audio-duree">
-                    <span>Écouter (3:15)</span>
+        <!-- Stories Grid -->
+        <section class="section-padding">
+            <div class="container-custom">
+                <div class="text-center mb-12">
+                    <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">Nos Histoires</h2>
+                    <p class="text-xl text-gray-700">Découvrez les récits qui ont marqué notre village</p>
                 </div>
-                <div class="fleche">→</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Story Card 1 -->
+                    <div class="card card-hover cursor-pointer" onclick="ouvrirModal('modal-1')">
+                        <img src="assets/images/couronne_eglise.png" alt="La couronne" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-red-600 mb-3">La couronne de coquelicots</h3>
+                            <p class="text-gray-700 mb-4 text-sm leading-relaxed">Un vétéran britannique retrouve son refuge de guerre...</p>
+                            <button class="flex items-center text-amber-600 hover:text-amber-700 font-medium">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                                Écouter (3:03)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder Cards -->
+                    <div class="card opacity-50">
+                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Prochainement</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-500 mb-3">Histoire à venir</h3>
+                            <p class="text-gray-500 mb-4 text-sm">Nouvelle histoire en préparation...</p>
+                            <button class="flex items-center text-gray-500 font-medium" disabled>
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                                Bientôt disponible
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card opacity-50">
+                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Prochainement</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-500 mb-3">En préparation</h3>
+                            <p class="text-gray-500 mb-4 text-sm">Collecte de témoignages en cours...</p>
+                            <button class="flex items-center text-gray-500 font-medium" disabled>
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                                En cours
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Ajoutez d'autres cartes ici -->
+        </section>
+
+        <!-- Map of Stories Section -->
+        <section class="section-padding bg-gradient-to-br from-red-50 to-amber-50">
+            <div class="container-custom">
+                <div class="text-center mb-8">
+                    <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">Carte des Histoires</h2>
+                    <p class="text-xl text-gray-700">Découvrez où se sont déroulées nos histoires dans le village</p>
+                </div>
+                <div class="card max-w-4xl mx-auto">
+                    <div class="p-6">
+                        <img src="assets/images/village.png" alt="Carte du village" class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <!-- Exemple de modal -->
-    <div id="modal-1" class="modal">
-        <div class="modal-contenu">
-            <span class="fermer" onclick="fermerModal('modal-1')">&times;</span>
-            <h2>Le jour où le clocher a failli s’écrouler</h2>
-            <img src="assets/images/anecdote-1.jpg" alt="Le clocher en 1987">
-            <p>En 1987, une tempête d’une violence inouïe s’est abattue sur Hérouvillette. Les vents ont soufflé à plus de 150 km/h, arrachant des arbres et endommageant de nombreux bâtiments. Le clocher de l’église, symbole de la commune, a vacillé sous la force des éléments. Grâce à l’intervention rapide des pompiers et des habitants, la structure a pu être sécurisée et restaurée par la suite.</p>
-            <audio controls>
-                <source src="assets/audio/anecdote-1.mp3" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'élément audio.
-            </audio>
+    <!-- Modal -->
+    <div id="modal-1" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onclick="fermerModal('modal-1')">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center rounded-t-2xl">
+                <h2 class="text-3xl font-bold text-red-600">La couronne de coquelicots</h2>
+                <button class="text-3xl text-gray-400 hover:text-gray-600 transition-colors p-2 -m-2" onclick="fermerModal('modal-1')">&times;</button>
+            </div>
+            <div class="p-6">
+                <img src="assets/images/couronne_eglise.png" alt="La couronne" class="w-full h-64 sm:h-80 object-cover rounded-lg mb-6">
+                <div class="text-gray-700 leading-relaxed mb-6 text-lg space-y-4">
+                    <p>Un dimanche de juin, un bus s'arrête de manière inattendue devant une église normande. À son bord, un groupe de visiteurs, dont un vieil homme en fauteuil roulant, accompagné d'une dame parlant un peu français.</p>
+                    <p>Ce dernier, un ancien soldat britannique, était revenu sur les lieux où, à 19 ans, il s'était caché dans le clocher de l'église pendant plusieurs jours pour échapper aux soldats allemands. Les Allemands fouillaient les alentours avec des armes, mais le jeune homme, mince et déterminé, était resté immobile, caché dans un petit espace près de la corde de la cloche.</p>
+                    <p>Soixante-dix ans plus tard, ému et fragile, il est porté par ses compagnons pour entrer dans l'église. Il dépose une couronne de coquelicots en souvenir, toujours visible aujourd'hui près de l'entrée. Une histoire de survie, de mémoire, et d'un retour symbolique sur les traces d'un passé douloureux.</p>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-4">
+                    <audio controls class="w-full">
+                        <source src="assets/audios/eglise_couronne.m4a" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'élément audio.
+                    </audio>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2025 - Arnaud GODET</p>
+    <footer class="bg-red-600 text-white py-8 mt-16">
+        <div class="container-custom text-center">
+            <p class="text-lg font-medium">© 2025 - Arnaud GODET</p>
+            <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="h-8 mx-auto mt-4 opacity-80">
+        </div>
     </footer>
 
     <script src="assets/js/script.js"></script>

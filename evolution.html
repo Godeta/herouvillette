@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évolution - Hérouvillette</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-orange-50">
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container-custom">
+            <div class="flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center space-x-4">
+                    <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="h-10 w-auto">
+                    <h1 class="text-xl sm:text-2xl font-bold text-red-600">Hérouvillette</h1>
+                </div>
+                <nav class="desktop-menu">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Accueil</a></li>
+                        <li><a href="petites-histoires.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Petites Histoires</a></li>
+                        <li><a href="evolution.html" class="text-red-600 font-semibold border-b-2 border-amber-400">Évolution</a></li>
+                        <li><a href="contact.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu p-2 text-gray-700" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-nav" class="mobile-menu hidden border-t border-gray-200 py-4">
+                <ul class="space-y-2 px-4">
+                    <li><a href="index.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Accueil</a></li>
+                    <li><a href="petites-histoires.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Petites Histoires</a></li>
+                    <li><a href="evolution.html" class="block py-2 text-red-600 font-semibold">Évolution</a></li>
+                    <li><a href="contact.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="relative h-[60vh] min-h-[400px] overflow-hidden">
+            <img src="assets/images/paysages.jpg" alt="Paysage Normand" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="relative container-custom h-full flex items-center justify-center text-center text-white">
+                <div class="max-w-4xl animate-fade-in-up">
+                    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 text-amber-100">Évolution</h1>
+                    <p class="text-2xl sm:text-3xl mb-8 text-orange-100 font-medium">L'histoire de notre commune à travers les décennies</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Village Data Section -->
+        <section class="section-padding">
+            <div class="container-custom">
+                <div class="text-center mb-12">
+                    <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">Données du Village</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card text-center">
+                        <div class="p-6">
+                            <div class="text-4xl font-bold text-red-600 mb-2">1,247</div>
+                            <div class="text-gray-700 font-medium">Habitants</div>
+                        </div>
+                    </div>
+                    <div class="card text-center">
+                        <div class="p-6">
+                            <div class="text-4xl font-bold text-red-600 mb-2">12.5</div>
+                            <div class="text-gray-700 font-medium">km² superficie</div>
+                        </div>
+                    </div>
+                    <div class="card text-center">
+                        <div class="p-6">
+                            <div class="text-4xl font-bold text-red-600 mb-2">1066</div>
+                            <div class="text-gray-700 font-medium">Première mention</div>
+                        </div>
+                    </div>
+                    <div class="card text-center">
+                        <div class="p-6">
+                            <div class="text-4xl font-bold text-red-600 mb-2">15</div>
+                            <div class="text-gray-700 font-medium">Infrastructures</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card max-w-4xl mx-auto mt-8">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-red-600 mb-6">Dates Importantes</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-20 text-amber-600 font-bold">1066</div>
+                                <div class="text-gray-700">Première mention historique du village</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-20 text-amber-600 font-bold">1944</div>
+                                <div class="text-gray-700">Libération pendant la Seconde Guerre mondiale</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-20 text-amber-600 font-bold">1975</div>
+                                <div class="text-gray-700">Fusion avec Sainte-Honorine-la-Chardronette</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-20 text-amber-600 font-bold">2010</div>
+                                <div class="text-gray-700">Rénovation de l'église et du patrimoine</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section class="section-padding bg-gradient-to-br from-red-50 to-amber-50">
+            <div class="container-custom">
+                <div class="text-center mb-12">
+                    <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">Carte Interactive</h2>
+                    <p class="text-xl text-gray-700">Cliquez sur les points d'intérêt pour découvrir leur histoire</p>
+                </div>
+                <div class="card max-w-5xl mx-auto">
+                    <div class="p-6 relative">
+                        <img src="assets/images/village.png" alt="Carte du village" class="w-full h-auto rounded-lg">
+                        <!-- Interactive markers -->
+                        <button class="absolute top-1/4 left-1/3 w-4 h-4 bg-red-600 rounded-full hover:bg-red-700 transform hover:scale-150 transition-all" onclick="showLocation('eglise')" title="Église"></button>
+                        <button class="absolute top-1/2 left-1/2 w-4 h-4 bg-red-600 rounded-full hover:bg-red-700 transform hover:scale-150 transition-all" onclick="showLocation('mairie')" title="Mairie"></button>
+                        <button class="absolute top-3/4 right-1/3 w-4 h-4 bg-red-600 rounded-full hover:bg-red-700 transform hover:scale-150 transition-all" onclick="showLocation('ecole')" title="École"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Life Section -->
+        <section class="section-padding">
+            <div class="container-custom">
+                <div class="text-center mb-12">
+                    <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">1 Jour dans la Vie de...</h2>
+                    <p class="text-xl text-gray-700">Découvrez le quotidien à travers les époques</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <button class="btn-primary text-center" onclick="showDailyLife('1960s')">Années 1960</button>
+                    <button class="btn-secondary text-center" onclick="showDailyLife('1980s')">Années 1980</button>
+                    <button class="btn-primary text-center" onclick="showDailyLife('2000s')">Années 2000</button>
+                    <button class="btn-secondary text-center" onclick="showDailyLife('2020s')">Années 2020</button>
+                </div>
+                <div id="daily-life-content" class="card max-w-4xl mx-auto">
+                    <div class="p-8 text-center text-gray-500">
+                        Sélectionnez une époque pour découvrir le quotidien d'un habitant
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Location Modal -->
+    <div id="location-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onclick="closeLocationModal()">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center rounded-t-2xl">
+                <h2 id="location-title" class="text-2xl font-bold text-red-600"></h2>
+                <button class="text-3xl text-gray-400 hover:text-gray-600 transition-colors p-2 -m-2" onclick="closeLocationModal()">&times;</button>
+            </div>
+            <div id="location-content" class="p-6"></div>
+        </div>
+    </div>
+
+    <footer class="bg-red-600 text-white py-8 mt-16">
+        <div class="container-custom text-center">
+            <p class="text-lg font-medium">© 2025 - Arnaud GODET</p>
+            <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="h-8 mx-auto mt-4 opacity-80">
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        function showLocation(location) {
+            const modal = document.getElementById('location-modal');
+            const title = document.getElementById('location-title');
+            const content = document.getElementById('location-content');
+            
+            const locations = {
+                eglise: {
+                    title: 'Église Saint-Pierre',
+                    content: '<img src="assets/images/couronne_eglise.png" class="w-full h-48 object-cover rounded-lg mb-4"><p class="text-gray-700">L\'église du village, témoin de nombreuses histoires...</p>'
+                },
+                mairie: {
+                    title: 'Mairie',
+                    content: '<div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center"><span class="text-gray-500">Photo de la mairie</span></div><p class="text-gray-700">Le centre administratif du village...</p>'
+                },
+                ecole: {
+                    title: 'École',
+                    content: '<div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center"><span class="text-gray-500">Photo de l\'école</span></div><p class="text-gray-700">L\'école communale qui a formé des générations...</p>'
+                }
+            };
+            
+            title.textContent = locations[location].title;
+            content.innerHTML = locations[location].content;
+            modal.classList.remove('hidden');
+        }
+        
+        function closeLocationModal() {
+            document.getElementById('location-modal').classList.add('hidden');
+        }
+        
+        function showDailyLife(era) {
+            const content = document.getElementById('daily-life-content');
+            
+            const dailyLifeContent = {
+                '1960s': '<div class="p-8"><h3 class="text-2xl font-bold text-red-600 mb-4">Marie, 25 ans - 1965</h3><p class="text-gray-700 mb-4">6h00 - Réveil au chant du coq. Marie trait les vaches avant le petit-déjeuner...</p><p class="text-gray-700">Une journée rythmée par les travaux agricoles et la vie communautaire.</p></div>',
+                '1980s': '<div class="p-8"><h3 class="text-2xl font-bold text-red-600 mb-4">Pierre, 30 ans - 1985</h3><p class="text-gray-700 mb-4">7h00 - Pierre part travailler à Caen en voiture. La modernisation arrive...</p><p class="text-gray-700">L\'époque des premiers changements vers la vie moderne.</p></div>',
+                '2000s': '<div class="p-8"><h3 class="text-2xl font-bold text-red-600 mb-4">Sophie, 28 ans - 2005</h3><p class="text-gray-700 mb-4">8h00 - Sophie télétravaille depuis chez elle, connectée au monde...</p><p class="text-gray-700">L\'ère numérique transforme le quotidien rural.</p></div>',
+                '2020s': '<div class="p-8"><h3 class="text-2xl font-bold text-red-600 mb-4">Lucas, 26 ans - 2023</h3><p class="text-gray-700 mb-4">9h00 - Lucas gère son exploitation bio avec des applications mobiles...</p><p class="text-gray-700">Tradition et technologie se mélangent harmonieusement.</p></div>'
+            };
+            
+            content.innerHTML = dailyLifeContent[era];
+        }
+    </script>
+</body>
+</html>

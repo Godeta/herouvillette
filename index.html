@@ -4,83 +4,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hérouvillette - Histoire & Patrimoine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="drapeau">
-            <h1>Hérouvillette</h1>
+<body class="bg-orange-50"> 
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container-custom">
+            <div class="flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center space-x-4">
+                    <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="h-10 w-auto">
+                    <h1 class="text-xl sm:text-2xl font-bold text-red-600">Hérouvillette</h1>
+                </div>
+                <nav class="desktop-menu">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html" class="text-red-600 font-semibold border-b-2 border-amber-400">Accueil</a></li>
+                        <li><a href="petites-histoires.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Petites Histoires</a></li>
+                        <li><a href="evolution.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Évolution</a></li>
+                        <li><a href="contact.html" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu p-2 text-gray-700" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-nav" class="mobile-menu hidden border-t border-gray-200 py-4">
+                <ul class="space-y-2 px-4">
+                    <li><a href="index.html" class="block py-2 text-red-600 font-semibold">Accueil</a></li>
+                    <li><a href="petites-histoires.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Petites Histoires</a></li>
+                    <li><a href="evolution.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Évolution</a></li>
+                    <li><a href="contact.html" class="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="petites-histoires.html">Petites Histoires</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <!-- Bannière d'introduction avec image de fond normande -->
-        <section class="banner">
-            <img src="assets/images/paysages.jpg" alt="Paysage Normand" class="banner-bg">
-            <div class="banner-content">
-                <h1>Hérouvillette & Sainte-Honorine-la-Chardronette</h1>
-                <p>Plongez dans l'histoire de notre commune, entre patrimoine et traditions normandes.</p>
-            </div>
-        </section>
-
-        <!-- Section de présentation -->
-        <section class="presentation">
-            <div class="drapeau-decoration"></div>
-            <h2>Hier et Aujourd’hui</h2>
-            <p>Hérouvillette, nichée au cœur de la Normandie, est un village où chaque pierre raconte une histoire. Fondée il y a plusieurs siècles, la commune a vu défiler les époques, conservant jalousement son âme normande. Sainte-Honorine-la-Chardronette, son lieu-dit emblématique, est un témoignage vivant de ce passé riche et mouvementé.</p>
-            <p>Des fermes en colombage aux églises romanes, en passant par les vergers de pommiers, Hérouvillette incarne l’authenticité normande. Aujourd’hui, la commune allie tradition et modernité, offrant à ses habitants comme à ses visiteurs un cadre de vie unique.</p>
-        </section>
-
-        <!-- Teaser Petites Histoires -->
-        <section class="teaser-petites-histoires">
-            <div class="drapeau-decoration"></div>
-            <h2>Petites Histoires dans la Grande</h2>
-            <p>Découvrez les récits et anecdotes qui ont marqué la vie des Hérouvillettais.</p>
-            <a href="petites-histoires.html" class="button">Lire les histoires</a>
-        </section>
-
-        <!-- Galerie de photos -->
-        <section class="galerie-photos">
-            <h2>Hérouvillette à travers les siècles</h2>
-            <div class="photo-set">
-                <div class="photo">
-                    <img src="assets/images/vieille-photo-1.jpg" alt="Hérouvillette au siècle dernier">
-                    <p><strong>Années 1920</strong><br>La place du village et son marché hebdomadaire.</p>
-                </div>
-                <div class="photo">
-                    <img src="assets/images/photo-2009-1.jpg" alt="Hérouvillette en 2009">
-                    <p><strong>2009</strong><br>La rénovation de l'église et de ses vitraux.</p>
-                </div>
-                <div class="photo">
-                    <img src="assets/images/photo-2025-1.jpg" alt="Hérouvillette en 2025">
-                    <p><strong>2025</strong><br>Le village aujourd'hui, entre tradition et modernité.</p>
+        <!-- Hero Banner -->
+        <section class="relative h-[70vh] min-h-[500px] overflow-hidden">
+            <img src="assets/images/paysages.jpg" alt="Paysage Normand" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="relative container-custom h-full flex items-center justify-center text-center text-white">
+                <div class="max-w-4xl animate-fade-in-up">
+                    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 text-amber-100">Hérouvillette</h1>
+                    <p class="text-2xl sm:text-3xl mb-8 text-orange-100 font-medium">Plongez dans l'histoire de notre commune, entre patrimoine et traditions normandes.</p>
+                    <a href="petites-histoires.html" class="btn-primary text-lg animate-fade-in-up animate-delay-200">
+                        Découvrir nos histoires
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Pour aller plus loin -->
-        <section class="pour-aller-plus-loin">
-            <div class="drapeau-decoration"></div>
-            <h2>Pour aller plus loin</h2>
-            <p>Retrouvez plus d'informations sur <a href="https://fr.wikipedia.org/wiki/Sainte-Honorine-de-Chardonnette" target="_blank">la page Wikipédia</a> ou contactez la mairie directement.</p>
+        <!-- Presentation Section -->
+        <section class="section-padding">
+            <div class="container-custom">
+                <div class="card max-w-5xl mx-auto animate-fade-in-up">
+                    <div class="p-8 lg:p-12">
+                        <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                        <h2 class="text-section-title text-3xl text-center mb-8">Hier et Aujourd'hui</h2>
+                        <div class="prose prose-xl max-w-none text-gray-800 space-y-6">
+                            <p class="text-xl leading-relaxed">Hérouvillette, nichée au cœur de la Normandie, est un village où chaque pierre raconte une histoire. Fondée il y a plusieurs siècles, la commune a vu défiler les époques, conservant jalousement son âme normande. Sainte-Honorine-la-Chardronette, son lieu-dit emblématique, est un témoignage vivant de ce passé riche et mouvementé.</p>
+                            <p class="text-xl leading-relaxed">Des fermes en colombage aux églises romanes, en passant par les vergers de pommiers, Hérouvillette incarne l'authenticité normande. Aujourd'hui, la commune allie tradition et modernité, offrant à ses habitants comme à ses visiteurs un cadre de vie unique.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Petites Histoires Teaser -->
+        <section class="section-padding bg-gradient-to-br from-red-50 to-amber-50">
+            <div class="container-custom">
+                <div class="card max-w-4xl mx-auto text-center animate-fade-in-up">
+                    <div class="p-8 lg:p-12">
+                        <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+                        <h2 class="text-3xl text-section-title mb-6">Petites Histoires dans la Grande</h2>
+                        <p class="text-2xl text-gray-700 mb-8 font-medium">Découvrez les récits et anecdotes qui ont marqué la vie des Hérouvillettais.</p>
+                        <a href="petites-histoires.html" class="btn-primary">
+                            Lire les histoires
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="section-padding">
+            <div class="container-custom">
+                <div class="text-center mb-12 animate-fade-in-up">
+                    <h2 class="text-3xl text-section-title mb-4">Hérouvillette à travers les siècles</h2>
+                    <p class="text-2xl text-gray-700 font-medium">Un voyage dans le temps à travers les images</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card card-hover animate-fade-in-up">
+                        <div class="h-64 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Image historique 1920</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-card-title mb-2">Années 1920</h3>
+                            <p class="text-gray-600">La place du village et son marché hebdomadaire.</p>
+                        </div>
+                    </div>
+                    <div class="card card-hover animate-fade-in-up animate-delay-100">
+                        <div class="h-64 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Image 2009</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-card-title mb-2">2009</h3>
+                            <p class="text-gray-600">La rénovation de l'église et de ses vitraux.</p>
+                        </div>
+                    </div>
+                    <div class="card card-hover animate-fade-in-up animate-delay-200">
+                        <div class="h-64 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">Image 2025</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-card-title mb-2">2025</h3>
+                            <p class="text-gray-600">Le village aujourd'hui, entre tradition et modernité.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section-padding ">
+            <div class="container-custom text-center">
+                <div class="max-w-3xl mx-auto animate-fade-in-up">
+                    <h2 class="text-3xl text-section-title mb-6 ">Pour aller plus loin</h2>
+                    <p class="text-2xl mb-8 font-medium">Retrouvez plus d'informations sur notre commune ou contactez-nous directement.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://fr.wikipedia.org/wiki/Sainte-Honorine-de-Chardonnette" target="_blank" class="btn-secondary">
+                            Page Wikipédia
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                        <a href="contact.html" class="btn-primary text-red-600 hover:bg-gray-100">
+                            Nous contacter
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <div class="drapeau-decoration"></div>
-        <p>© 2025 - Arnaud GODET</p>
-        <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="drapeau-footer">
+    <footer class="bg-red-600 text-white py-8">
+        <div class="container-custom text-center">
+            <p class="text-lg font-medium">© 2025 - Arnaud GODET</p>
+            <img src="assets/images/Flag_of_Normandie.svg" alt="Drapeau Normand" class="h-8 mx-auto mt-4 opacity-80">
+        </div>
     </footer>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

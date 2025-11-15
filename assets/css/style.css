@@ -1,346 +1,258 @@
-/* Reset et base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f5f0; /* Fond crème pour évoquer la Normandie */
-}
-
-/* Couleurs normandes */
+/* Norman colors */
 :root {
-    --rouge-normand: #d62728;
-    --or-normand: #ffd700;
-    --gris-clair: #f9f5f0;
-    --gris-fonce: #333;
+    --rouge-normand: #dc2626;
+    --or-normand: #fbbf24;
+    --gris-clair: #fef7ed;
+    --gris-fonce: #374151;
 }
 
-h1, h2, h3 {
-    font-family: 'Lora', serif;
-    color: var(--rouge-normand);
+@layer base {
+    body {
+        font-family: 'Inter', 'Open Sans', sans-serif;
+        @apply bg-orange-50 text-gray-800 leading-relaxed;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lora', serif;
+        @apply text-red-600 font-semibold;
+    }
 }
 
-a {
-    text-decoration: none;
-    color: var(--rouge-normand);
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg;
+    }
+    
+    .btn-secondary {
+        @apply inline-flex items-center px-6 py-3 bg-amber-400 text-gray-900 font-medium rounded-lg hover:bg-amber-500 transition-all duration-300;
+    }
+    
+    .card {
+        @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden;
+    }
+    
+    .card-hover {
+        @apply transform hover:-translate-y-2 transition-all duration-300;
+    }
+    
+    .norman-decoration {
+        @apply h-2 bg-gradient-to-r from-red-600 via-amber-400 to-red-600 rounded-full;
+    }
+    
+    .section-padding {
+        @apply px-4 sm:px-6 lg:px-8 py-6 lg:py-8;
+    }
+    
+    .container-custom {
+        @apply max-w-7xl mx-auto;
+    }
 }
 
-.button {
-    display: inline-block;
-    padding: 0.7rem 1.5rem;
-    background-color: var(--rouge-normand);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: all 0.3s;
-    cursor: pointer;
+/* Custom styles for specific elements */
+.hero-gradient {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.9) 0%, rgba(251, 191, 36, 0.8) 100%);
 }
 
-.button:hover {
-    background-color: #b81d1d;
-    transform: translateY(-2px);
+.story-card {
+    @apply card card-hover cursor-pointer group;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
+.story-card:hover .story-arrow {
+    @apply translate-x-2;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.story-arrow {
+    @apply transition-transform duration-300;
 }
 
-.drapeau {
-    height: 50px;
-    width: auto;
+.audio-player {
+    @apply w-full bg-gray-100 rounded-lg p-4;
 }
 
-header h1 {
-    font-size: 1.8rem;
-    margin: 0;
+.modal-backdrop {
+    @apply fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
+.modal-content {
+    @apply bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto;
 }
 
-/* Bannière */
-.banner {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-    margin-bottom: 2rem;
+.mobile-menu {
+    @apply lg:hidden;
 }
 
-.banner-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.8);
+.desktop-menu {
+    @apply hidden lg:flex;
 }
 
-.banner-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    background-color: rgba(0,0,0,0.5);
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 800px;
+.mobile-menu button {
+    @apply lg:hidden;
 }
 
-.banner-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--or-normand);
+/* Responsive typography */
+@layer utilities {
+    .text-hero {
+        @apply text-4xl sm:text-5xl lg:text-6xl font-bold;
+    }
+    
+    .text-section-title {
+        @apply text-3xl sm:text-4xl lg:text-5xl font-bold;
+    }
+    
+    .text-card-title {
+        @apply text-lg sm:text-xl font-semibold;
+    }
 }
 
-/* Décoration drapeau normand */
-.drapeau-decoration {
-    width: 100%;
-    height: 10px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--rouge-normand) 0px,
-        var(--rouge-normand) 20px,
-        var(--or-normand) 20px,
-        var(--or-normand) 40px
-    );
-    margin-bottom: 1.5rem;
+/* Animation utilities */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Présentation */
-.presentation {
-    padding: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-    position: relative;
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.presentation h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+.animate-delay-100 {
+    animation-delay: 0.1s;
 }
 
-/* Teaser Petites Histoires */
-.teaser-petites-histoires {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    margin-bottom: 2rem;
-    border-top: 5px solid var(--or-normand);
+.animate-delay-200 {
+    animation-delay: 0.2s;
 }
 
-.teaser-petites-histoires h2 {
-    margin-bottom: 1rem;
+.animate-delay-300 {
+    animation-delay: 0.3s;
 }
 
-/* Galerie de photos */
-.galerie-photos {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
+/* Petites Histoires specific styles */
+.stories-hero {
+    @apply relative bg-gradient-to-br from-red-600 to-amber-500 text-white;
 }
 
-.galerie-photos h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+.stories-intro {
+    @apply card section-padding text-center;
 }
 
-.photo-set {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+.stories-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8;
 }
 
-.photo {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+.story-card {
+    @apply card card-hover cursor-pointer group relative overflow-hidden;
 }
 
-.photo:hover {
-    transform: scale(1.03);
+.story-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-red-600;
 }
 
-.photo img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.story-image {
+    @apply w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500;
 }
 
-.photo p {
-    padding: 1rem;
-    text-align: center;
-    background-color: var(--gris-clair);
-    color: var(--gris-fonce);
+.story-card img {
+    @apply w-full h-48 object-cover;
 }
 
-/* Pour aller plus loin */
-.pour-aller-plus-loin {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    margin-bottom: 2rem;
+.story-content {
+    @apply p-6;
 }
 
-.pour-aller-plus-loin h2 {
-    margin-bottom: 1rem;
+.story-title {
+    @apply text-card-title text-red-600 mb-3 group-hover:text-red-700 transition-colors;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--rouge-normand);
-    color: white;
-    margin-top: 2rem;
+.story-description {
+    @apply text-gray-800 mb-4 line-clamp-3 font-medium;
 }
 
-.drapeau-footer {
-    height: 30px;
-    margin-top: 1rem;
+.story-duration {
+    @apply inline-flex items-center text-sm font-medium text-amber-600 mb-4;
 }
 
-/* Page Contact */
-.contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+.story-arrow {
+    @apply absolute bottom-4 right-6 text-2xl text-amber-500 transition-transform duration-300;
 }
 
-.contact-info {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.audio-intro {
+    @apply mt-6 p-4 bg-gray-50 rounded-lg;
 }
 
-.info-block {
-    margin-bottom: 1.5rem;
-}
-
-.info-block h3 {
-    color: var(--rouge-normand);
-    margin-bottom: 0.5rem;
-    border-bottom: 2px solid var(--or-normand);
-    padding-bottom: 0.5rem;
-}
-
-.contact-form {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.7rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: inherit;
-}
-
-.form-group textarea {
-    resize: vertical;
-}
-
-/* Modal */
+/* Modal styles */
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    z-index: 1000;
-    overflow: auto;
+    @apply hidden fixed inset-0 bg-black bg-opacity-75 z-50 overflow-y-auto;
+}
+
+.modal.active {
+    @apply flex items-center justify-center p-4;
 }
 
 .modal-contenu {
-    background-color: white;
-    margin: 5% auto;
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 800px;
-    position: relative;
-    border-top: 5px solid var(--or-normand);
+    @apply bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative;
+}
+
+.modal-header {
+    @apply sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center rounded-t-2xl;
+}
+
+.modal-body {
+    @apply p-6;
+}
+
+.modal-image {
+    @apply w-full h-64 sm:h-80 object-cover rounded-lg mb-6;
+}
+
+.modal-title {
+    @apply text-section-title text-red-600 mb-4;
+}
+
+.modal-text {
+    @apply text-gray-700 leading-relaxed mb-6 text-lg;
 }
 
 .fermer {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--rouge-normand);
+    @apply text-3xl text-gray-400 hover:text-gray-600 cursor-pointer transition-colors p-2 -m-2;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 1rem;
-    }
+.audio-player {
+    @apply w-full bg-gray-100 rounded-lg p-4;
+}
 
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+/* Additional responsive utilities */
+@media (max-width: 640px) {
+    .stories-grid {
+        @apply grid-cols-1;
     }
-
-    .photo-set {
-        grid-template-columns: 1fr;
+    
+    .story-card {
+        @apply mx-4;
     }
-
-    .contact-content {
-        grid-template-columns: 1fr;
+    
+    .modal-contenu {
+        @apply m-4 max-h-[95vh];
     }
+    
+    .text-hero {
+        @apply text-3xl;
+    }
+}
 
-    .banner-content h1 {
-        font-size: 2rem;
+/* Print styles */
+@media print {
+    .modal, .btn-primary, .btn-secondary {
+        @apply hidden;
     }
 }
