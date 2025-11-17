@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- for the map Leaflet.js CSS + JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 </head>
 <body class="bg-orange-50">
     <header class="bg-white shadow-lg sticky top-0 z-40">
@@ -116,24 +120,164 @@
         </section>
 
         <!-- Interactive Map Section -->
-        <section class="section-padding bg-gradient-to-br from-red-50 to-amber-50">
-            <div class="container-custom">
-                <div class="text-center mb-12">
-                    <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">Carte Interactive</h2>
-                    <p class="text-xl text-gray-700">Cliquez sur les points d'intérêt pour découvrir leur histoire</p>
-                </div>
-                <div class="card max-w-5xl mx-auto">
-                    <div class="p-6 relative">
-                        <img src="assets/images/village.png" alt="Carte du village" class="w-full h-auto rounded-lg">
-                        <!-- Interactive markers -->
-                        <button class="absolute top-1/4 left-1/3 w-4 h-4 bg-red-600 rounded-full hover:bg-red-700 transform hover:scale-150 transition-all" onclick="showLocation('eglise')" title="Église"></button>
-                        <button class="absolute top-1/2 left-1/2 w-4 h-4 bg-red-600 rounded-full hover:bg-red-700 transform hover:scale-150 transition-all" onclick="showLocation('mairie')" title="Mairie"></button>
-                        <button class="absolute top-3/4 right-1/3 w-4 h-4 bg-red-600 rounded-full hover:bg-red-700 transform hover:scale-150 transition-all" onclick="showLocation('ecole')" title="École"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="section-padding bg-gradient-to-br from-red-50 to-amber-50">
+    <div class="container-custom">
+        <div class="text-center mb-12">
+            <div class="norman-decoration mb-8 max-w-md mx-auto"></div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-red-600 mb-4">Carte Interactive</h2>
+            <p class="text-xl text-gray-700">Cliquez sur les points d'intérêt pour découvrir leur histoire</p>
+        </div>
+
+        <div class="card max-w-5xl mx-auto p-6">
+            <!-- Map container -->
+            <div id="map" class="rounded-lg" style="height: 500px;"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+// ----------------------------
+// INITIALISATION DE LA CARTE
+// ----------------------------
+var map = L.map('map').setView([49.21330, -0.27212], 14); // <-- centre la carte (à modifier)
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// ----------------------------
+// MARKERS AVEC POPUPS & IMAGES
+// ----------------------------
+
+const locations = [
+    {
+        name: "Église",
+        coords: [49.20839,-0.27576],
+        images: [
+            "assets/images/stho_eglise_2009.JPG",
+            "assets/images/stho_eglise_vieux.jpg"
+        ],
+        short: "Chapelle de Sainte-Honorine images d'époque et d'aujourd'hui",
+        description: "L'édifice actuel remonte pour partie au XVIII' siècle, ainsi qu'il est noté dans les archives- « En 1772, le marquis d'Angersille d'Auvrecher, fait relever en entier le choeur de l'église et une partie de la nef fait bâtir une sacristie et donne une portion de terrain pour agrandir le cimetière ». Cette chapelle était desservie par un prêtre résidant et remplissant toutes les fonctions curiales; elle avait son cimetière, ses fonts baptismaux, ses registres et son trésor particulier. Le chapelain était ordinairement un membre du clergé d'Hérouvillette; nous y trouvons en 1677 Etienne Boulard, prêtre obitier de cette paroisse."
+    },
+    {
+        name: "Mairie",
+        coords: [49.218585, -0.247190],
+        images: [
+            "assets/images/HerouvilletteMairie7bis.jpg",
+            "assets/images/HerouvilletteMairie9.jpg",
+            "assets/images/HerouvilletteMairie2009.jpg",
+            "assets/images/HerouvilletteMairieEcole1.jpg",
+            "assets/images/HerouvilletteMairieEcole2.jpg",
+            "assets/images/HerouvilletteMairieEcole3.jpg"
+        ],
+        short: "La mairie de la commune d'Hérouvillette.",
+        description: "Anciennement une école et aujourd'hui annexé à la poste"
+    },
+    {
+        name: "École",
+        coords: [49.20980, -0.27452],
+        images: [
+            "assets/images/couronne_eglise.png",
+            "assets/images/paysages.jpg",
+            "assets/images/Flag_of_Normandie.svg"
+        ],
+        description: "L'école historique du village."
+    }
+];
+
+locations.forEach(loc => {
+    const marker = L.marker(loc.coords).addTo(map);
+
+    // Generate HTML for all images
+    const imagesHTML = `
+    <div class="carousel" style="position:relative; width:320px; margin:auto; display:flex; gap:10px; justify-content:center;">
+        <img id="img1-${loc.name}" 
+             src="${loc.images[0]}" 
+             style="width:150px; height:auto;" 
+             class="rounded-lg mb-2">
+
+        <img id="img2-${loc.name}" 
+             src="${loc.images[1] || loc.images[0]}" 
+             style="width:150px; height:auto;" 
+             class="rounded-lg mb-2">
+        
+        <button onclick="prevImage('${loc.name}')" 
+                style="position:absolute; top:40%; left:-25px;">◀</button>
+        <button onclick="nextImage('${loc.name}')" 
+                style="position:absolute; top:40%; right:-25px;">▶</button>
+    </div>
+`;
+
+    marker.bindPopup(`
+    <div class="text-center">
+        <h3 class="font-bold text-lg mb-2">${loc.name}</h3>
+
+        ${imagesHTML}
+
+        <p class="text-sm text-gray-700">${loc.short}</p>
+
+        <div id="more-${loc.name}" style="display:none;">
+            <p class="text-sm text-gray-700 mt-2">${loc.description}</p>
+        </div>
+
+        <button onclick="toggleMore('${loc.name}')" 
+                class="mt-2 px-3 py-1 bg-red-600 text-white rounded">
+            More info
+        </button>
+    </div>
+`);
+});
+let currentIndexes = {};
+
+function updateCarousel(name) {
+    const loc = locations.find(l => l.name === name);
+    if (!loc) return;
+
+    const idx = currentIndexes[name];
+
+    const img1 = document.getElementById(`img1-${name}`);
+    const img2 = document.getElementById(`img2-${name}`);
+
+    img1.src = loc.images[idx];
+    img2.src = loc.images[(idx + 1) % loc.images.length];
+}
+
+function nextImage(name) {
+    const loc = locations.find(l => l.name === name);
+    if (!loc) return;
+
+    if (!currentIndexes[name]) currentIndexes[name] = 0;
+    currentIndexes[name] = (currentIndexes[name] + 1) % loc.images.length;
+
+    updateCarousel(name);
+}
+
+function prevImage(name) {
+    const loc = locations.find(l => l.name === name);
+    if (!loc) return;
+
+    if (!currentIndexes[name]) currentIndexes[name] = 0;
+    currentIndexes[name] =
+        (currentIndexes[name] - 1 + loc.images.length) % loc.images.length;
+
+    updateCarousel(name);
+}
+
+function toggleMore(name) {
+    const el = document.getElementById(`more-${name}`);
+    const isHidden = el.style.display === "none";
+    el.style.display = isHidden ? "block" : "none";
+
+    // Change button text
+    const btn = event.target;
+    btn.textContent = isHidden ? "Less info" : "More info";
+}
+
+
+</script>
+
 
         <!-- Daily Life Section -->
         <section class="section-padding">
