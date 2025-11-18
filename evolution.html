@@ -155,40 +155,75 @@ const locations = [
         name: "Église",
         coords: [49.20839,-0.27576],
         images: [
-            "assets/images/stho_eglise_2009.JPG",
-            "assets/images/stho_eglise_vieux.jpg"
+            "assets/images/carte/stho_eglise_2009.JPG",
+            "assets/images/carte/stho_eglise_vieux.jpg"
         ],
         short: "Chapelle de Sainte-Honorine images d'époque et d'aujourd'hui",
         description: "L'édifice actuel remonte pour partie au XVIII' siècle, ainsi qu'il est noté dans les archives- « En 1772, le marquis d'Angersille d'Auvrecher, fait relever en entier le choeur de l'église et une partie de la nef fait bâtir une sacristie et donne une portion de terrain pour agrandir le cimetière ». Cette chapelle était desservie par un prêtre résidant et remplissant toutes les fonctions curiales; elle avait son cimetière, ses fonts baptismaux, ses registres et son trésor particulier. Le chapelain était ordinairement un membre du clergé d'Hérouvillette; nous y trouvons en 1677 Etienne Boulard, prêtre obitier de cette paroisse."
     },
     {
+    name: "Route de Caen",
+    type: "rectangle",
+    bounds: [
+        [49.21890, -0.247],  // coin 1
+        [49.21959, -0.244]   // coin 2
+    ],
+     images: [
+    "assets/images/carte/HerouvilletteRteCaen2009_1.JPG",
+    "assets/images/carte/HerouvilletteRteCaen2009_2.JPG",
+    "assets/images/carte/HerouvilletteRteCaen2009_3.JPG",
+    "assets/images/carte/HerouvilletteRteCaenCabourg2.jpg",
+    "assets/images/carte/HerouvilletteRteCaenCabourg3.jpg",
+    "assets/images/carte/HerouvilletteRteCaenCafé.jpg",
+    "assets/images/carte/HerouvilletteRteCaenCharDsHabitation.bmp",
+    "assets/images/carte/HerouvilletteRteCaenMaisonMarguerite.jpg",
+    "assets/images/carte/HerouvilletteRteCaenRestaurantLeMarquis.jpg",
+    "assets/images/carte/HerouvilletteRteEscovile1.jpg",
+    "assets/images/carte/HerouvilletteRteEscovile2.jpg",
+    "assets/images/carte/HerouvilletteRteEscovile3.jpg"
+],
+        short: "Route de Caen",
+        description: "A côté et en face de la mairie."
+    }, 
+    {
         name: "Mairie",
         coords: [49.218585, -0.247190],
         images: [
-            "assets/images/HerouvilletteMairie7bis.jpg",
-            "assets/images/HerouvilletteMairie9.jpg",
-            "assets/images/HerouvilletteMairie2009.jpg",
-            "assets/images/HerouvilletteMairieEcole1.jpg",
-            "assets/images/HerouvilletteMairieEcole2.jpg",
-            "assets/images/HerouvilletteMairieEcole3.jpg"
+            "assets/images/carte/HerouvilletteMairie7bis.jpg",
+            "assets/images/carte/HerouvilletteMairie9.jpg",
+            "assets/images/carte/HerouvilletteMairie2009.jpg",
+            "assets/images/carte/HerouvilletteMairieEcole1.jpg",
+            "assets/images/carte/HerouvilletteMairieEcole2.jpg",
+            "assets/images/carte/HerouvilletteMairieEcole3.jpg"
         ],
         short: "La mairie de la commune d'Hérouvillette.",
         description: "Anciennement une école et aujourd'hui annexé à la poste"
     },
-    {
-        name: "École",
-        coords: [49.20980, -0.27452],
-        images: [
-            "assets/images/couronne_eglise.png",
-            "assets/images/paysages.jpg",
-            "assets/images/Flag_of_Normandie.svg"
-        ],
-        description: "L'école historique du village."
-    }
 ];
 
 locations.forEach(loc => {
-    const marker = L.marker(loc.coords).addTo(map);
+
+    let element;
+
+    if (loc.type === "rectangle") {
+        // --- draw an area ---
+        element = L.rectangle(loc.bounds, {
+            color: "red",
+            weight: 2,
+            fillOpacity: 0.2
+        }).addTo(map);
+
+        // place popup in center of rectangle
+        loc.coords = [
+            (loc.bounds[0][0] + loc.bounds[1][0]) / 2,
+            (loc.bounds[0][1] + loc.bounds[1][1]) / 2
+        ];
+    } 
+    else {
+        // --- default: marker ---
+        element = L.marker(loc.coords).addTo(map);
+    }
+
 
     // Generate HTML for all images
     const imagesHTML = `
@@ -210,7 +245,7 @@ locations.forEach(loc => {
     </div>
 `;
 
-    marker.bindPopup(`
+    element.bindPopup(`
     <div class="text-center">
         <h3 class="font-bold text-lg mb-2">${loc.name}</h3>
 
